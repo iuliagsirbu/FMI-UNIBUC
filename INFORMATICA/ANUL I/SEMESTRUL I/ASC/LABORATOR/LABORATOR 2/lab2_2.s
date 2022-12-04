@@ -1,6 +1,7 @@
-;// Fie x, y doua numere naturale salvate in memorie. Sa se scrie un program care calculeaza in doua moduri (x/16) + (y × 16).
+;//Sa se adauge in cadrul programului anterior la final un pas pentru a verifica daca cele doua valori calculate sunt egale. Daca da, sa se afiseze ”PASS”, altfel ”FAIL”.
 .data
 	s: .space 40
+	s1: .space 40
 	x: .space 20
 	y: .space 20
 	fs1: .asciz "%d"
@@ -8,7 +9,9 @@
 	fs3: .asciz "numarul y este: "
 	fs4: .asciz "Prima metoda este prin operatii aritmetice\n"
 	fs5: .asciz "A doua metoda este prin operatii de shift (deplasare) logice\n"
-	fs6: .asciz "%d\n" 
+	fs6: .asciz "%d\n"
+	fs7: .asciz "PASS\n"
+	fs8: .asciz "FAIL\n"
 .text
 .global main
 main:
@@ -61,6 +64,7 @@ main:
 	
 	add %ebx, %ecx
 	mov %ecx, s
+	mov %ecx, s1
 	
 	pushl s
 	pushl $fs6
@@ -98,6 +102,33 @@ main:
 	call fflush
 	popl %eax
 	
-	mov $1, %eax
-	mov $0, %ebx
-	int $0x80
+	mov s1, %ecx
+	cmp %ecx, %ebx
+	
+	je pass
+	jne fail
+	
+	pass:
+		pushl $fs7
+		call printf
+		popl %eax
+		
+		pushl $0 
+		call fflush
+		popl %eax
+		
+		jmp etexit
+	
+	fail:
+		pushl $fs8
+		call printf
+		popl %eax
+		
+		pushl $0 
+		call fflush
+		popl %eax
+	
+	etexit:
+		mov $1, %eax
+		mov $0, %ebx
+		int $0x80
