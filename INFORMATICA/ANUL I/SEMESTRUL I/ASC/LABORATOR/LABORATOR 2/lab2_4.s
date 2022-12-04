@@ -8,6 +8,7 @@
 	fs4: .asciz "Prima metoda:\n"
 	fs5: .asciz "A doua metoda:\n"
 	fs6: .asciz "%d"
+	fs7: .asciz "%d/n"
 .text
 .global main
 main:
