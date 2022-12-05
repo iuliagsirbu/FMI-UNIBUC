@@ -1,4 +1,4 @@
-;#Fie s un string salvat in memorie si t un spatiu alocat cu aceeasi numar de octeti. Sa se obtina in t inversul string-ului s si sa se afiseze pe ecran.
+;#Fie s un string citit de la tastatura si t un spatiu alocat cu acelasi numar de octeti. Sa se obtina in t inversul string-ului s si sa se afiseze pe ecran.
 .data
 	s: .space 100
 	t: .space 100
